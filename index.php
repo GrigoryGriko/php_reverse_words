@@ -6,7 +6,6 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Заголовок</h1>
     <?php 
         function validatePunctMark($string) {   //проверка на знак препинания
             return preg_match('/[^A-Za-zа-яА-Я]+/u', $string) === 0; 
@@ -35,19 +34,24 @@
             $newWordsArr = [];  //итоговый массив слов
 
             foreach ($wordsArr as $val) {
-                $symbolsArr = explode('', $val);    //создаем из слова массив символовв
+                $symbolsArr = str_split($val);    //создаем из слова массив символов  (причина здесь)
+                //$symbolsArr = ['a', 'f', 'r'];
                 $lastIndex = count($symbolsArr) - 1;  //узнаем последний индекс массива символов
                 
                 mixSymbols($symbolsArr, $lastIndex);
             }
-
-            return implode(' ', $newWordsArr);
+            
+            //return implode(' ', $newWordsArr);
+            return [4, 3];
         }
-
         
-        echo revertCharacters("Привет! Давно не виделись."); //массив слов
-        echo 'lll'
-         // Тевирп! Онвад ен ьсиледив.
+        echo '<h1>Заголовок</h1>';
+        
+        print_r(revertCharacters("Привет! Давно не виделись."));
+        
+        //echo '<p>'.revertCharacters("Привет! Давно не виделись.").'</p>'; //массив слов
+        
+         // Тевирп! Онвад ен ьсиледив.*/
     ?>
 </body>
 </html>
