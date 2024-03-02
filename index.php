@@ -24,14 +24,13 @@
                     }   
                     $newWordsArr[$indexForPush] = $symbol;  //добавляем символ в новый массив с конца
                 }
-                //в любом случае выполняем
             }
         }
 
         function revertCharacters($words) {
             $wordsArr = explode(' ', $words);    //массив со словами
 
-            $newWordsArr = [];  //итоговый массив слов
+            $newWordsArr = [1, 2];  //итоговый массив слов
 
             foreach ($wordsArr as $val) {
                 $symbolsArr = str_split($val);    //создаем из слова массив символов  (причина здесь)
