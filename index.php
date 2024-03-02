@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Заголовоккк</h1>
+    <h1>Заголовок</h1>
     <?php 
         function validatePunctMark($string) {   //проверка на знак препинания
             return preg_match('/[^A-Za-zа-яА-Я]+/u', $string) === 0; 
@@ -41,11 +41,12 @@
                 mixSymbols($symbolsArr, $lastIndex);
             }
 
-            return $newWordsArr;
+            return implode(' ', $newWordsArr);
         }
 
         
         echo revertCharacters("Привет! Давно не виделись."); //массив слов
+        echo 'lll'
          // Тевирп! Онвад ен ьсиледив.
     ?>
 </body>
