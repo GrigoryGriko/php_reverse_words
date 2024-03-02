@@ -35,14 +35,12 @@
 
             foreach ($wordsArr as $val) {
                 $symbolsArr = str_split($val);    //создаем из слова массив символов  (причина здесь)
-                //$symbolsArr = ['a', 'f', 'r'];
                 $lastIndex = count($symbolsArr) - 1;  //узнаем последний индекс массива символов
                 
                 mixSymbols($symbolsArr, $lastIndex);
             }
             
-            //return implode(' ', $newWordsArr);
-            return [4, 3];
+            return implode(' ', $newWordsArr);
         }
         
         echo '<h1>Заголовок</h1>';
