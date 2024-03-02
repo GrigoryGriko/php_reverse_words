@@ -30,12 +30,12 @@
         }
 
         function revertCharacters($words) {
-            $wordsArr = explode(' ', $words);   //массив со словами
+            $wordsArr = explode(' ', $words);    //массив со словами
 
             $newWordsArr = [];  //итоговый массив слов
 
             foreach ($wordsArr as $val) {
-                $symbolsArr = explode('', $val);    //создаем из слова массив символов
+                $symbolsArr = explode('', $val);    //создаем из слова массив символовв
                 $lastIndex = count($symbolsArr) - 1;  //узнаем последний индекс массива символов
                 
                 mixSymbols($symbolsArr, $lastIndex);
