@@ -25,14 +25,17 @@
 
                 if (ctype_punct($symbol)) {  //если символ является знаком препинания
                     $newSymbolsArr[$i] = $symbol;   //то оставляем его, сохраняя под тем же индексом
-                    print_r('-+'.$i.'+-');
+                    print_r(' ~ '.$i.' ~ ');
                 } else {
                     if (ctype_upper($symbolsArr[$indexForPush])) {      //если буква, которую заменим заглавная
-                        //mb_strtolower($symbol, 'UTF-8');//то перенесенную букву делаем заглавной (не удается)
-                        print_r('++++++++');
-                    }   
-                    $newSymbolsArr[$indexForPush] = strtolower($symbol);  //добавляем символ в новый массив с конца (не работает изменение регистра)
-                    print_r('--'.$i.'--');
+                        print_r('---'.$symbolsArr[$indexForPush]);
+                        print_r('___'.$symbolsArr[$i]);
+                        $symbol = strtoupper($symbol); //то перенесенную букву делаем заглавной (не удается)
+                        print_r($symbol);
+                    } else {
+                        $symbol = strtolower($symbol);        //иначе в строчную
+                    }  
+                    $newSymbolsArr[$indexForPush] = $symbol;  //добавляем символ в новый массив с конца (не работает изменение регистра)
                 }
             }
             ksort($newSymbolsArr);
@@ -59,10 +62,9 @@
         echo '<h1>Заголовок</h1>';
         echo revertCharacters("Privet! Davno ne videlis.");
 
-        echo $lowercase; // выведет "привет, мир!"
-        //echo '<p>'.revertCharacters("Привет! Давно не виделись.").'</p>'; //массив слов
-        print_r($lowercase);
 
+        //echo '<p>'.revertCharacters("Привет! Давно не виделись.").'</p>'; //массив слов
+        
         
          // Тевирп! Онвад ен ьсиледив.*/
     ?>
