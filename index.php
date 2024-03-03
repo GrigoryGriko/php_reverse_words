@@ -1,3 +1,6 @@
+<?php
+    header('Content-Type: text/html; charset=utf-8');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,45 +9,50 @@
     <title>Document</title>
 </head>
 <body>
-    <?php 
+    <?php
         function validatePunctMark($string) {   //проверка на знак препинания
             return preg_match('/[^A-Za-zа-яА-Я]+/u', $string) === 0; 
         }
 
         function mixSymbols($symbolsArr, $lastIndex) {
+            $newSymbolsArr = [];
+
             for ($i = 0; $i <= $lastIndex; $i++) {
                 $indexForPush = $lastIndex - $i;
                 $symbol = $symbolsArr[$i];
 
                 if (validatePunctMark($symbol)) {  //если символ является знаком препинания
-                    $newWordsArr[$i] = $symbol;   //то оставляем его, сохраняя под тем же индексом
+                    $newSymbolsArr[$i] = $symbol;   //то оставляем его, сохраняя под тем же индексом
                 } else {
                     if (ctype_upper($symbolsArr[$indexForPush])) {      //если буква, которую заменим заглавная
                         strtoupper($symbol);//то перенесенную букву делаем заглавной
                     }   
-                    $newWordsArr[$indexForPush] = $symbol;  //добавляем символ в новый массив с конца
+                    $newSymbolsArr[$indexForPush] = $symbol;  //добавляем символ в новый массив с конца
                 }
             }
+
+            sort($newSymbolsArr);
+            return implode('', $newSymbolsArr); //соединяем новый массив букв
         }
 
         function revertCharacters($words) {
             $wordsArr = explode(' ', $words);    //массив со словами
 
-            $newWordsArr = [1, 2];  //итоговый массив слов
+            $newWordsArr = [];  //итоговый массив слов
 
             foreach ($wordsArr as $val) {
-                $symbolsArr = str_split($val);    //создаем из слова массив символов  (причина здесь)
+                $symbolsArr = preg_split('//u',$val,-1,PREG_SPLIT_NO_EMPTY);    //создаем из слова массив символов  (для кодировки utf-8)
                 $lastIndex = count($symbolsArr) - 1;  //узнаем последний индекс массива символов
+                print_r($symbolsArr);
                 
-                mixSymbols($symbolsArr, $lastIndex);
+                array_push($newWordsArr, mixSymbols($symbolsArr, $lastIndex));  //добавляем слово в новый массив слов
             }
             
-            return implode(' ', $newWordsArr);
+            return implode(' ', $newWordsArr);  //соединяем элементы нового массива слов
         }
         
         echo '<h1>Заголовок</h1>';
-        
-        print_r(revertCharacters("Привет! Давно не виделись."));
+        echo revertCharacters("Привет! Давно не виделись.");
         
         //echo '<p>'.revertCharacters("Привет! Давно не виделись.").'</p>'; //массив слов
         
