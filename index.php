@@ -11,7 +11,9 @@
 <body>
     <?php
         function validatePunctMark($string) {   //проверка на знак препинания
-            return preg_match('/[^A-Za-zа-яА-Я]+/u', $string) === 0; 
+            $pattern = '/[^a-zA-Zа-яА-ЯёЁ0-9 !@#\$%\^&\*\(\)\_\-\+={}\[\]:;"\',<.>\/]+/';
+            
+            return preg_match($pattern, $string) === 0; 
         }
 
         function mixSymbols($symbolsArr, $lastIndex) {
@@ -21,7 +23,7 @@
                 $indexForPush = $lastIndex - $i;
                 $symbol = $symbolsArr[$i];
 
-                if (validatePunctMark($symbol)) {  //если символ является знаком препинания
+                if (ctype_punct($symbol)) {  //если символ является знаком препинания
                     $newSymbolsArr[$i] = $symbol;   //то оставляем его, сохраняя под тем же индексом
                 } else {
                     if (ctype_upper($symbolsArr[$indexForPush])) {      //если буква, которую заменим заглавная
@@ -43,7 +45,6 @@
             foreach ($wordsArr as $val) {
                 $symbolsArr = preg_split('//u',$val,-1,PREG_SPLIT_NO_EMPTY);    //создаем из слова массив символов  (для кодировки utf-8)
                 $lastIndex = count($symbolsArr) - 1;  //узнаем последний индекс массива символов
-                print_r($symbolsArr);
                 
                 array_push($newWordsArr, mixSymbols($symbolsArr, $lastIndex));  //добавляем слово в новый массив слов
             }
