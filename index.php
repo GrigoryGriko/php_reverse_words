@@ -1,5 +1,5 @@
 <?php
-    header('Content-Type: text/html; charset=utf-8');
+    header('Content-Type: text/html; charset=utf-8')
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,13 +28,11 @@
                 } else {
                     if (ctype_upper($symbolsArr[$indexForPush])) {      //если буква, которую заменим заглавная
                         strtoupper($symbol);//то перенесенную букву делаем заглавной
-                        
                     }   
-
-                    $newSymbolsArr[$indexForPush] = $symbol;  //добавляем символ в новый массив с конца
+                    $newSymbolsArr[$indexForPush] = strtolower($symbol);  //добавляем символ в новый массив с конца
                 }
             }
-
+            print_r(strtolower('ДДД'));
             ksort($newSymbolsArr);
             print_r($newSymbolsArr);
             return implode('', $newSymbolsArr); //соединяем новый массив букв
