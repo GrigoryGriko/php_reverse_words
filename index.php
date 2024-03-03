@@ -22,10 +22,8 @@
             for ($i = 0; $i <= $lastIndex; $i++) {
                 $indexForPush = $lastIndex - $i;
                 $symbol = $symbolsArr[$i];
-
                 if (ctype_punct($symbol)) {  //если символ является знаком препинания
-                    $newSymbolsArr[$i] = $symbol;   //то оставляем его, сохраняя под тем же индексом
-                    print_r(' ~ '.$i.' ~ ');
+                    //array_push($symbolsArr($symbol));   //добавляем знак припинания к массиву букв
                 } else {
                     if (ctype_upper($symbolsArr[$indexForPush])) {      //если буква, которую заменим заглавная
                         print_r('---'.$symbolsArr[$indexForPush]);
