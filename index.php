@@ -28,12 +28,15 @@
                 } else {
                     if (ctype_upper($symbolsArr[$indexForPush])) {      //если буква, которую заменим заглавная
                         strtoupper($symbol);//то перенесенную букву делаем заглавной
+                        
                     }   
+
                     $newSymbolsArr[$indexForPush] = $symbol;  //добавляем символ в новый массив с конца
                 }
             }
 
-            sort($newSymbolsArr);
+            ksort($newSymbolsArr);
+            print_r($newSymbolsArr);
             return implode('', $newSymbolsArr); //соединяем новый массив букв
         }
 
@@ -44,7 +47,7 @@
 
             foreach ($wordsArr as $val) {
                 $symbolsArr = preg_split('//u',$val,-1,PREG_SPLIT_NO_EMPTY);    //создаем из слова массив символов  (для кодировки utf-8)
-                $lastIndex = count($symbolsArr);  //узнаем последний индекс массива символов
+                $lastIndex = count($symbolsArr) - 1;  //узнаем последний индекс массива символов
 
                 array_push($newWordsArr, mixSymbols($symbolsArr, $lastIndex));  //добавляем слово в новый массив слов
             }
