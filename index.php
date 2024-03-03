@@ -44,8 +44,8 @@
 
             foreach ($wordsArr as $val) {
                 $symbolsArr = preg_split('//u',$val,-1,PREG_SPLIT_NO_EMPTY);    //создаем из слова массив символов  (для кодировки utf-8)
-                $lastIndex = count($symbolsArr) - 1;  //узнаем последний индекс массива символов
-                
+                $lastIndex = count($symbolsArr);  //узнаем последний индекс массива символов
+
                 array_push($newWordsArr, mixSymbols($symbolsArr, $lastIndex));  //добавляем слово в новый массив слов
             }
             
